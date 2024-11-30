@@ -1,6 +1,7 @@
 import './style.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
+import { UsersApp } from './users/user-app'
 
 document.querySelector('#app').innerHTML = `
   <div>
@@ -15,5 +16,7 @@ document.querySelector('#app').innerHTML = `
     </div>
   </div>
 `
+const element = document.querySelector('.card')
 
-setupCounter(document.querySelector('#counter'))
+UsersApp(element)
+
