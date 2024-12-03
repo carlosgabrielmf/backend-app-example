@@ -8,7 +8,7 @@ export const UsersApp = async(element) => {
     element.innerHTML = "loading...";
     await usersStore.loadNextPage();
     
-     element.innerHTML = " ";
+     element.innerHTML = "";
     renderTable( element );
     
 
