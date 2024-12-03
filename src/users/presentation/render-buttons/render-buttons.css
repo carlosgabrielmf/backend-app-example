@@ -1,0 +1,8 @@
+button {
+    margin: 15px;
+}
+
+#current-page{
+    color: #646cff !important;
+    font-size: 1.5rem;
+}
