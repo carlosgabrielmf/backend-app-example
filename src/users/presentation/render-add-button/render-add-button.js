@@ -1,10 +1,8 @@
 import './render-add-button.css'
 /**
- * 
  * @param {HTMLDivElement} element 
- * @param {{} => void} callback
  */
-export const renderAddButton = ( element, callback ) => {
+export const renderAddButton = ( element ) => {
 
     const fabButton = document.createElement("button");
     fabButton.innerText = "+";
@@ -13,10 +11,7 @@ export const renderAddButton = ( element, callback ) => {
     element.append(fabButton);
 
     fabButton.addEventListener('click', () => {
-        if (!callback) return;
-
-        callback();
-        // throw new Error("Not implemented");
+        throw new Error("Not implemented");
         
 
     })
