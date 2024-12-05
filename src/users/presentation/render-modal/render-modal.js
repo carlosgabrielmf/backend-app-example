@@ -22,9 +22,9 @@ export const renderModal = ( element ) => {
 
     form.addEventListener('submit', (event) => {
         event.preventDefault(); // con este evento prevenimos que el formulario se muestre en una url
-
         const formData = new FormData( form ); // esta interfaz o provide devuelve una instancia HTML de tipo formulario en modo de objeto con pares de valores
-        userLike = {}; // declaramos un objeto vacio en representacion para poder manipular mi data
+        const userLike = {}; // declaramos un objeto vacio en representacion para poder manipular mi data
+
         for (const [key, value] of formData) {
             if ( key === 'balance'){ // comprobamos si la key es estrictamente igual a balance dentro de mi data
                 userLike[key] = +value; //  esta es la accion que realiza mi comprobacion: cambiar el value de la key a Number Type
@@ -32,11 +32,14 @@ export const renderModal = ( element ) => {
             }
 
             if (key === 'isActive') {
-                userLike[key] = (value === on) ? true: false;
+                userLike[key] = (value === 'on') ? true: false;
                 continue; 
             }
 
+            userLike[key] = value; // esta variable maneja la muestra de la insercion del nuevo objeto en mi BBDD
+            
         }
+        console.log(userLike);
         
         // TODO: guardar usuario
 
