@@ -5,8 +5,9 @@ let modal, form;
 /**
  * 
  * @param {HTMLDivElement} element 
+ * @param {(userLike) => Promise<void>} 
  */
-export const renderModal = ( element ) => {
+export const renderModal = ( element, callback ) => {
 
     if (modal) return;
     modal = document.createElement('div');
@@ -20,9 +21,9 @@ export const renderModal = ( element ) => {
         };
     });
 
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
         event.preventDefault(); // con este evento prevenimos que el formulario se muestre en una url
-        const formData = new FormData( form ); // esta interfaz o provide devuelve una instancia HTML de tipo formulario en modo de objeto con pares de valores
+        const formData = new FormData( form ); // Devuelve una instancia HTML de tipo formulario en modo de objeto con pares de valores
         const userLike = {}; // declaramos un objeto vacio en representacion para poder manipular mi data
 
         for (const [key, value] of formData) {
@@ -39,9 +40,9 @@ export const renderModal = ( element ) => {
             userLike[key] = value; // esta variable maneja la muestra de la insercion del nuevo objeto en mi BBDD
             
         }
-        console.log(userLike);
         
-        // TODO: guardar usuario
+        // Guardar usuario
+        await callback(userLike)
 
         hideModal();
         
