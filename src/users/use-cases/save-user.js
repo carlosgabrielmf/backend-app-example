@@ -5,7 +5,7 @@ import {User} from "../models/user"
  * 
  * @param {Like<User>} userLike 
  */
-export const saveUser = async (userLike) => {
+export const saveUser = async(userLike) => {
 
     const user = new User( userLike );
 
@@ -17,8 +17,8 @@ export const saveUser = async (userLike) => {
         
     }
 
-    const updateUser = await createUntrackedSearchParams( user );
-    return updateUser;
+    const updatedUser = await createUser( user );
+    return updatedUser;
 }
 
 
@@ -26,13 +26,13 @@ export const saveUser = async (userLike) => {
  * 
  * @param {Like<User>} user 
  */
-export const createUser = async (user) => {
-    const url = `${import.meta.env.VITE_BASE_URL}?_users`;
+export const createUser = async(user) => {
+    const url = `${ import.meta.env.VITE_BASE_URL }/users`;
     const res = await fetch(url, {
         method: 'POST',
         body: JSON.stringify(user),
-        header: {
-            'Content-Type': 'aplicaiton/json'
+        headers: {
+            'Content-Type': 'application/json'
         }
     });
 

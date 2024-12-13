@@ -21,7 +21,7 @@ export const renderModal = ( element, callback ) => {
         };
     });
 
-    form.addEventListener('submit', async (event) => {
+    form.addEventListener('submit', async(event) => {
         event.preventDefault(); // con este evento prevenimos que el formulario se muestre en una url
         const formData = new FormData( form ); // Devuelve una instancia HTML de tipo formulario en modo de objeto con pares de valores
         const userLike = {}; // declaramos un objeto vacio en representacion para poder manipular mi data
@@ -39,14 +39,15 @@ export const renderModal = ( element, callback ) => {
 
             userLike[key] = value; // esta variable maneja la muestra de la insercion del nuevo objeto en mi BBDD
             
+            console.log(userLike);
+            
         }
-        
-        // Guardar usuario
-        await callback(userLike)
 
         hideModal();
         
-    })
+        // Guardar usuario
+        await callback(userLike)
+    });
 
     element.append( modal );
 
@@ -55,7 +56,7 @@ export const renderModal = ( element, callback ) => {
 
 // TODO: cargar usuario por ID
 export const showModal = () => {
-    modal?.classList.remove('hide-modal') // estos metodos no funcionan con classList
+    modal?.classList.remove('hide-modal') // estos metodos no funcionan con className
 }
 
 export const hideModal = () => {
