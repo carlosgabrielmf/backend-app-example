@@ -1,7 +1,9 @@
 import modalHtml from "./render-modal.html?raw";
+import { getUserById } from "../../use-cases/get-user-by-id";
+import {User} from "../../models/user"
 import "./render-modal.css"
 
-let modal, form;
+let modal, form, loadedUSer = {};
 /**
  * 
  * @param {HTMLDivElement} element 
@@ -24,7 +26,7 @@ export const renderModal = ( element, callback ) => {
     form.addEventListener('submit', async(event) => {
         event.preventDefault(); // con este evento prevenimos que el formulario se muestre en una url
         const formData = new FormData( form ); // Devuelve una instancia HTML de tipo formulario en modo de objeto con pares de valores
-        const userLike = {}; // declaramos un objeto vacio en representacion para poder manipular mi data
+        const userLike = {...loadedUSer}; // declaramos un objeto vacio en representacion para poder manipular mi data
 
         for (const [key, value] of formData) {
             if ( key === 'balance'){ // comprobamos si la key es estrictamente igual a balance dentro de mi data
@@ -54,13 +56,38 @@ export const renderModal = ( element, callback ) => {
 }
 
 
-// TODO: cargar usuario por ID
-export const showModal = () => {
+
+/**
+ * @param {String|Number} id
+ */
+export const showModal = async(id) => {
     modal?.classList.remove('hide-modal') // estos metodos no funcionan con className
+    loadedUSer = {};
+
+    if (!id) {
+        return;
+    }
+    const user = await getUserById(id);
+    setFormsValues(user)
+
+
 }
 
 export const hideModal = () => {
     modal?.classList.add('hide-modal') // con estos metodos podemos quitar y colocar las clases
     form?.reset(); // el metodo resetea el formulario al cerrarlo
+}
+
+/**
+ * @param {User} user
+ */
+const setFormsValues = (user) => {
+    form.querySelector('[name="firstName"]').value = user.firstName;
+    form.querySelector('[name="lastName"]').value = user.lastName;
+    form.querySelector('[name="balance"]').value = user.balance;
+    form.querySelector('[name="isActive"]').checked = user.isActive;
+
+    loadedUSer = user;
+
 }
 

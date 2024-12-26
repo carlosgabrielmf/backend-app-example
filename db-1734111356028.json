@@ -449,20 +449,6 @@
       "first_name": "Mcbride",
       "last_name": "Woodward",
       "gender": "male"
-    },
-    {
-      "balance": 1500,
-      "first_name": "Carlos Gabriel",
-      "isActive": true,
-      "last_name": "Mosquera Flores",
-      "id": 51
-    },
-    {
-      "balance": 0,
-      "first_name": "",
-      "isActive": true,
-      "last_name": "",
-      "id": 52
     }
   ]
 }
